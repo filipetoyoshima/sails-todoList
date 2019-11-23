@@ -13,15 +13,15 @@ module.exports = function(req, res, next) {
                         return res.status(401).json(err);
                     }
                     req.user = decoded;
-                    next();
+                    return next();
                 });
+            } else {
+                return res.status(401)
+                    .json({
+                        err: 'The correct format is "Authorization: Bearer [token]"'
+                    })
+                ;
             }
-        
-        return res.status(401)
-            .json({
-                err: 'The correct format is "Authorization: Bearer [token]"'
-            })
-        ;
         }
     } else {
         return res.status(401)
