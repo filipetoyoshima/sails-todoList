@@ -18,5 +18,16 @@ module.exports = {
     ;
   },
 
+  list: function (req, res) {
+    Todo.find({ owner: req.user.id })
+      .then(todos => {
+        res.status(200).json(todos);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      })
+    ;
+  }
+
 };
 

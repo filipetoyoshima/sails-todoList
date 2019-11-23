@@ -24,6 +24,7 @@ module.exports.routes = {
   'POST /api/users/login': 'UserController.login',
   'GET /api/users/protectedRoute': 'UserController.protectedRoute',
   'POST /api/todo': 'TodoController.create',
+  'GET /api/todo': 'TodoController.list',
 
 
   /***************************************************************************
