@@ -6,8 +6,19 @@
  */
 
 module.exports = {
-  create: function (req, res) {
+  create: async function (req, res) {
+
+    let category = await Category.findOne({id: parseInt(req.body.category)});
+    if (category === undefined) {
+      let availableCategories = Category.find({});
+      return res.status(406).json({
+        msg: 'non-existent category',
+        availableCategories: availableCategories,
+      })
+    }
+
     req.body.owner = req.user.id;
+
     Todo.create(req.body).fetch()
       .then(todo => {
         res.status(200).json(todo);
