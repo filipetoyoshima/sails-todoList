@@ -14,11 +14,15 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     name: {
       type: 'string',
-      required: true
+      required: true,
     },
     description: {
       type: 'string',
       required: false,
+    },
+    owner: {
+      model: 'User',
+      required: true,
     },
     
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
