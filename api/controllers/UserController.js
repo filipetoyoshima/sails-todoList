@@ -22,8 +22,6 @@ module.exports = {
   login: function(req, res) {
     User.findOne({ email: req.body.email })
       .then(user => {
-        console.log(req.body);
-        console.log(user);
         if (user.password == req.body.password) {
           return res.status(200).json({
             token: jwt.sign(user.toJSON(), 'secret')
@@ -34,8 +32,7 @@ module.exports = {
         });
       })
       .catch(err => {
-        console.log(err);
-        res.status(401).json({
+        return res.status(401).json({
           err: 'usuário não encontrado'
         });
       })
@@ -43,6 +40,7 @@ module.exports = {
   },
 
   protectedRoute: function(req, res) {
-    res.status(200).json(req.user);
+    return res.status(200).json({msg: "tá safe!"});
   },
+
 };

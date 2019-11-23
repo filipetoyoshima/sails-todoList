@@ -16,7 +16,9 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-
+  UserController: {
+    'protectedRoute': 'is-auth',
+  },
   // '*': true,
 
 };
